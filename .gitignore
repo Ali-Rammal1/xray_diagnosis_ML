@@ -1,0 +1,27 @@
+# Ignore everything in /data except the CSV file
+data/*
+!data/dataset_splits_with_metadata.csv
+
+# Ignore Jupyter Notebook checkpoints
+**/.ipynb_checkpoints/
+
+# Ignore __pycache__ and Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore environment and virtualenv files
+.env
+.venv/
+venv/
+env/
+
+# Ignore IDE and OS-specific files
+.DS_Store
+.idea/
+.vscode/
+Thumbs.db
+
+# Ignore processed data if needed
+processed_data/
