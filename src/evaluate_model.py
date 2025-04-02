@@ -44,14 +44,17 @@ def evaluate(model, dataloader):
 # Main function
 def main():
     print(f"📂 Evaluating model on test set: {TEST_DIR}")
+    
     test_dataset = XrayDataset(TEST_DIR, split="test")
-    test_dataset.samples = [
-        (path, label) for path, label in test_dataset.samples if label in [0, 1, 2]
-    ]  # Exclude UNKNOWN
+    
+
+    print(f"🧪 Total test samples: {len(test_dataset.samples)}")
+    
     test_loader = DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=False)
 
     model = load_model()
     evaluate(model, test_loader)
+
 
 if __name__ == "__main__":
     main()
