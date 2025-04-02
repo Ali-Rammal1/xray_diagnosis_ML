@@ -2,16 +2,23 @@
 data/*
 !data/dataset_splits_with_metadata.csv
 
+# Ignore everything in /data_processed except the CSV file
+data_processed/*
+!data_processed/dataset_splits_with_metadata.csv
+
+# Ignore everything in /cleaned_data
+cleaned_data/**
+
 # Ignore Jupyter Notebook checkpoints
 **/.ipynb_checkpoints/
 
-# Ignore __pycache__ and Python cache files
+# Ignore Python cache
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 
-# Ignore environment and virtualenv files
+# Ignore environment folders
 .env
 .venv/
 venv/
@@ -23,5 +30,5 @@ env/
 .vscode/
 Thumbs.db
 
-# Ignore processed data if needed
+# Ignore optional processed data folder
 processed_data/
