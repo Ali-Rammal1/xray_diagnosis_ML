@@ -32,3 +32,6 @@ Thumbs.db
 
 # Ignore optional processed data folder
 processed_data/
+node_modules
+
+tempCodeRunnerFile*
