@@ -14,7 +14,7 @@ export const MainContent = styled.main`
   flex-direction: column;
   align-items: center;
   padding: ${({ theme }) => theme.space.md} ${({ theme }) => theme.space.sm};
-  
+
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: ${({ theme }) => theme.space.lg} ${({ theme }) => theme.space.md};
   }
@@ -54,12 +54,13 @@ export const Flex = styled.div`
   flex-wrap: ${props => props.wrap || 'nowrap'};
 `;
 
-// Grid container
+// Grid container --- CORRECTED: Only one definition ---
 export const Grid = styled.div`
   display: grid;
   grid-template-columns: ${props => props.columns || 'repeat(1, 1fr)'};
   grid-gap: ${props => props.gap || '1rem'};
-  
+
+  // Optional: Responsive columns based on theme breakpoints
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     grid-template-columns: ${props => props.mobileColumns || 'repeat(1, 1fr)'};
   }
@@ -84,7 +85,7 @@ export const ButtonBase = styled.button`
   transition: all ${({ theme }) => theme.transitions.normal};
   font-size: 1rem;
   border: none;
-  
+
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
