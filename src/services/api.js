@@ -107,21 +107,45 @@ async function apiRequest(url, method, data, headers = {}) {
 /**
  * Upload and analyze an image with your custom AI (via your backend)
  * SIMULATION REMAINS - This part likely needs a real backend endpoint
- */
-export async function analyzeWithOurAI(imageData) {
-    console.log(`Simulating call to backend: POST ${OUR_AI_ENDPOINT} - Not Implemented`);
-    await new Promise(resolve => setTimeout(resolve, 500)); // Simulate delay
+ */// src/services/api.js
 
-    // Return a failure state as it's not implemented
-    return {
-        success: false,
-        source: 'Our Custom AI Model',
-        status: 'backend_unavailable',
-        message: 'The backend analysis service is not yet implemented or is currently unavailable.',
-        description: 'Analysis could not be performed using Our AI.', // More specific description
-        timestamp: new Date().toISOString()
-    };
+
+export async function analyzeWithOurAI(imageData) {
+    const OUR_AI_ENDPOINT = 'http://localhost:5000/predict'; // Update if hosted elsewhere
+
+    try {
+        const formData = new FormData();
+        formData.append('image', imageData);
+
+        const response = await fetch(OUR_AI_ENDPOINT, {
+            method: 'POST',
+            body: formData,
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to get prediction from server.');
+        }
+
+        const data = await response.json();
+        return {
+            ...data,
+            success: true,
+            timestamp: new Date().toISOString()
+        };
+    } catch (error) {
+        console.error('Error calling Our AI:', error);
+        return {
+            success: false,
+            source: 'Our Custom AI Model',
+            status: 'backend_unavailable',
+            message: error.message,
+            description: 'Analysis could not be performed using Our AI.',
+            timestamp: new Date().toISOString()
+        };
+    }
 }
+
 
 /**
  * Upload and analyze an image with external AI service (Gemini)

@@ -221,7 +221,7 @@ const HomePage = () => {
         setError(''); // Clear any previous errors (if error state is added later)
         try {
             // Call the API function to analyze the image
-            const result = await analyzeWithOurAI(imageData);
+            const result = await analyzeWithOurAI(imageData.file);
             setAnalysisResult(result); // Store the analysis result in context
             navigate('/results'); // Navigate to the results page
         } catch (error) {
