@@ -14,7 +14,7 @@ LABEL_MAP = {'NORMAL': 0, 'PNEUMONIA': 1, 'TUBERCULOSIS': 2, 'UNKNOWN': 3}
 
 # Set BASE_DIR to the project root (parent of src/)
 BASE_DIR = Path(__file__).resolve().parent.parent
-DATA_PROCESSED_DIR = BASE_DIR / "cleaned_data"
+DATA_PROCESSED_DIR = BASE_DIR / "data_processed"
 
 print("BASE_DIR:", BASE_DIR)
 print("DATA_PROCESSED_DIR:", DATA_PROCESSED_DIR)

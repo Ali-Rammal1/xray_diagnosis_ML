@@ -1,9 +1,11 @@
 # Ignore everything in /data except the CSV file
 data/*
+data_old/*
 !data/dataset_splits_with_metadata.csv
 
 # Ignore everything in /data_processed except the CSV file
 data_processed/*
+data_processed_old/*
 !data_processed/dataset_splits_with_metadata.csv
 
 # Ignore everything in /cleaned_data
@@ -33,5 +35,7 @@ Thumbs.db
 # Ignore optional processed data folder
 processed_data/
 node_modules
+
+tempCodeRunnerFile*
 
 tempCodeRunnerFile*
