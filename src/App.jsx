@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import HomePage from './pages/HomePage';
 import ResultsPage from './pages/ResultsPage';
 import NotFoundPage from './pages/NotFoundPage';
+import AboutUsPage from './pages/AboutUsPage'; // Import About Us page
+import AboutModelPage from './pages/AboutModelPage'; // Import About Model page
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { AppContainer, MainContent } from './styles/componentStyles';
@@ -35,6 +37,10 @@ function App() {
                                     imageData ? <ResultsPage /> : <Navigate to="/" replace />
                                 }
                             />
+                            {/* Add routes for the new pages */}
+                            <Route path="/about-us" element={<AboutUsPage />} />
+                            <Route path="/about-model" element={<AboutModelPage />} />
+
                             <Route path="*" element={<NotFoundPage />} />
                         </Routes>
                     </MainContent>

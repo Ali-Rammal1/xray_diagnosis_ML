@@ -2,20 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <!-- Keep existing meta tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#121212" />
+    <meta name="theme-color" content="#000000" />
     <meta
             name="description"
-            content="AI Image Analysis - Upload your images for instant AI analysis"
+            content="AI Image Analyzer Application"
     />
+    <!-- Maybe keep apple-touch-icon if you have a larger version -->
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!-- Import Inter font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <title>AI Image Analyzer</title>
+
+    <!-- === FAVICON LINK === -->
+    <!-- Remove the default favicon.ico link if it exists -->
+    <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> -->
+
+    <!-- Add this line pointing to your logo in the public folder -->
+    <link rel="icon" href="%PUBLIC_URL%/ai-xray-logo.png" />
+    <!-- === END FAVICON LINK === -->
+
+    <title>Lungify</title> <!-- You can also update the title here -->
 </head>
 <body>
 <noscript>You need to enable JavaScript to run this app.</noscript>
