@@ -8,7 +8,7 @@ from data_loading import XrayDataset, LABEL_MAP  # Uses your defined dataset and
 # Paths
 BASE_DIR = Path(__file__).resolve().parent.parent
 MODEL_PATH = BASE_DIR / "best_model.pth"
-TEST_DIR = BASE_DIR / "cleaned_data"
+TEST_DIR = BASE_DIR / "data_processed"
 BATCH_SIZE = 32
 NUM_CLASSES = 4  # Only: NORMAL, PNEUMONIA, TUBERCULOSIS
 
