@@ -1,7 +1,7 @@
 # Ignore everything in /data except the CSV file
-data/*
+src/data/*
 data_old/*
-!data/dataset_splits_with_metadata.csv
+!src/data/dataset_splits_with_metadata.csv
 
 # Ignore everything in /data_processed except the CSV file
 data_processed/*
