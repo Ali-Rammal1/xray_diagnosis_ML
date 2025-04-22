@@ -59,7 +59,7 @@ def window_level(img: np.ndarray, wl: float, ww: float) -> np.ndarray:
 
 def preprocess_image_for_inference(img_bytes: bytes) -> torch.Tensor:
     """Preprocesses raw image bytes using the same pipeline as training data."""
-    try:
+    try:#Debug #1
         # 1. Decode image bytes using OpenCV
         nparr = np.frombuffer(img_bytes, np.uint8)
         img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)  # Read as color
@@ -165,6 +165,7 @@ except Exception as e:
 @app.route('/predict', methods=['POST'])
 def predict():
     # Check if model loaded correctly
+
     if model is None:
         return jsonify(
             {"success": False, "message": "Model is not loaded or failed to load."}), 503  # Service Unavailable
@@ -237,7 +238,7 @@ def predict():
 if __name__ == "__main__":
     # Check if model loaded before starting server
     if model is None:
-        print("❌ Model failed to load. Server cannot start.")
+        print("❌ Model failed to load. Server cannot currently start.")
     else:
         print(f"🚀 Starting Flask development server on http://0.0.0.0:5000...")
         # Use host='0.0.0.0' to make server accessible on network (use with caution)
