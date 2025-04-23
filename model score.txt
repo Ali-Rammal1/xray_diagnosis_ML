@@ -1,0 +1,35 @@
+--- Running Evaluation Loop ---
+  Processed batch 20/42
+  Processed batch 40/42
+  Processed batch 42/42
+Evaluation loop finished.
+
+--- Calculating Performance Metrics ---
+
+Classification Report:
+              precision    recall  f1-score   support
+
+      NORMAL     0.9808    0.9865    0.9837       511
+   PNEUMONIA     0.9987    0.9792    0.9889       432
+TUBERCULOSIS     0.9885    0.9857    0.9871        70
+     UNKNOWN     1.0000    1.0000    1.0000       327
+
+    accuracy                         0.9925      1340
+   macro avg     0.9952    0.9912    0.9931      1340
+weighted avg     0.9927    0.9925    0.9925      1340
+
+Overall Accuracy: 95.25%
+
+Macro Avg Precision: 0.9952, Recall: 0.9912, F1-Score: 0.9931
+Weighted Avg Precision: 0.9927, Recall: 0.9925, F1-Score: 0.9925
+
+Confusion Matrix (Rows: True, Cols: Pred):
+              NORMAL  PNEUMONIA  TUBERCULOSIS  UNKNOWN
+NORMAL           511          0             0        0
+PNEUMONIA          9        423             0        0
+TUBERCULOSIS       1          0            69        0
+UNKNOWN            0          0             0      327
+
+--- Evaluation Script Finished ---
+
+Process finished with exit code 0
