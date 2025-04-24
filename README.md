@@ -16,12 +16,14 @@ This project has been dockerized for easy deployment and portability.
 1. Make sure Docker and Docker Compose are installed on your system.
 
 2. Clone this repository:
+
    ```
    git clone <repository-url>
    cd xray_diagnosis_ML
    ```
 
 3. Start the application:
+
    ```
    docker-compose up
    ```
@@ -29,6 +31,7 @@ This project has been dockerized for easy deployment and portability.
    This will build and start both the frontend and backend services.
 
 4. Access the application:
+
    - Frontend: http://localhost:3000
    - Backend API: http://localhost:5000
 
@@ -42,26 +45,31 @@ This project has been dockerized for easy deployment and portability.
 If `docker-compose up` gets stuck or shows no progress:
 
 1. Try running with verbose output:
+
    ```
    docker-compose up --verbose
    ```
 
 2. Build the images separately:
+
    ```
    docker-compose build --no-cache
    ```
 
 3. Test just the backend service:
+
    ```
    docker-compose -f docker-compose.debug.yml up
    ```
 
 4. Check Docker logs for errors:
+
    ```
    docker-compose logs
    ```
 
 5. Make sure the model file path is correct:
+
    ```
    ls -la src/best_model.pth
    ```
@@ -82,4 +90,4 @@ If `docker-compose up` gets stuck or shows no progress:
 
 ## Development
 
-For development without Docker, refer to the setup instructions in each component's directory. 
+For development without Docker, refer to the setup instructions in each component's directory.
