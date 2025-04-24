@@ -1,0 +1,30 @@
+FROM node:16-alpine
+
+WORKDIR /app
+
+# Install curl for healthcheck
+RUN apk --no-cache add curl
+
+# Copy package.json and package-lock.json
+COPY frontend/package*.json ./
+
+# Install dependencies
+RUN npm ci --loglevel=error
+
+# Copy frontend code
+COPY frontend/ ./
+
+# Set up environment - will be overridden by docker-compose
+ENV REACT_APP_API_URL=http://backend:5000
+
+# Build the app
+RUN npm run build
+
+# Install serve to run the application
+RUN npm install -g serve
+
+# Expose port
+EXPOSE 3000
+
+# Start the app
+CMD ["serve", "-s", "build", "-l", "3000"] 

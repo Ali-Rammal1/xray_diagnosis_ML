@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  # Backend service - test if this runs on its own
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./src/best_model.pth:/app/src/best_model.pth
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=server.py
+      - PYTHONUNBUFFERED=1
+    command: ["python", "-u", "server.py"] 

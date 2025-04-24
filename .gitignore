@@ -1,12 +1,13 @@
 # Ignore everything in /data except the CSV file
-src/data/*
+data/*
 data_old/*
-!src/data/dataset_splits_with_metadata.csv
+!data/dataset_splits_with_metadata.csv
 
 # Ignore everything in /data_processed except the CSV file
 data_processed/*
 data_processed_old/*
 !data_processed/dataset_splits_with_metadata.csv
+data/*
 
 # Ignore everything in /cleaned_data
 cleaned_data/**

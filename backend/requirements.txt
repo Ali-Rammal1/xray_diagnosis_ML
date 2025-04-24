@@ -1,0 +1,12 @@
+flask==2.2.3
+flask-cors==3.0.10
+werkzeug<2.3              # Required to avoid 'url_quote' import error in Flask 2.2.x
+
+
+torch==2.0.1+cpu
+torchvision==0.15.2+cpu
+numpy==1.24.3
+opencv-python==4.7.0.72
+
+# Use official PyTorch CPU wheel source
+-f https://download.pytorch.org/whl/torch_stable.html
