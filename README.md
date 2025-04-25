@@ -54,7 +54,7 @@ This application provides an intuitive web interface for medical professionals t
 
 ## Performance Metrics
 
-- **Overall Accuracy**: 99.65%
+- **Overall Accuracy**: 99.35%
 - **Class-wise Precision**:
   - Normal: 0.9884
   - Pneumonia: 0.9892
