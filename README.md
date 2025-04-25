@@ -49,7 +49,7 @@ This application provides an intuitive web interface for medical professionals t
 ### Data Augmentation
 
 - Random horizontal flips
-- Random rotations (±15°)
+- Random rotations (±8°)
 - Random brightness and contrast adjustments
 
 ## Performance Metrics
