@@ -71,8 +71,6 @@ This application provides an intuitive web interface for medical professionals t
 
 - **Framework**: React.js
 - **Styling**: Styled Components
-- **Animations**: Framer Motion
-- **Routing**: React Router
 
 ### Backend
 
@@ -131,7 +129,7 @@ Contains the trained model and scripts used for data processing and model evalua
 1. Clone this repository:
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Ali-Rammal1/xray_diagnosis_ML
    cd xray_diagnosis_ML
    ```
 
@@ -145,7 +143,6 @@ Contains the trained model and scripts used for data processing and model evalua
 3. Access the application:
 
    - Frontend: http://localhost:3000
-   - Backend API: http://localhost:5000
 
 4. To stop the application:
    ```bash
