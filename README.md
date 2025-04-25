@@ -1,93 +1,184 @@
-# X-Ray Diagnosis ML Project
+# X-Ray Diagnosis ML Web Application
 
-A web application for diagnosing X-ray images using machine learning.
+A comprehensive web application for diagnosing chest X-ray images using deep learning. This system can classify X-ray images into Normal, Pneumonia, or Tuberculosis categories.
+
+## Table of Contents
+- [Project Overview](#project-overview)
+- [Model Architecture](#model-architecture)
+- [Data Processing](#data-processing)
+- [Performance Metrics](#performance-metrics)
+- [Technologies Used](#technologies-used)
+- [Docker Setup](#docker-setup)
+- [Manual Installation](#manual-installation)
+- [Usage](#usage)
+- [Key Features](#key-features)
+- [Datasets](#datasets)
+
+## Project Overview
+
+This application provides an intuitive web interface for medical professionals to upload and analyze chest X-ray images. The system leverages a deep learning model based on ResNet18 to classify the images into different diagnostic categories with high accuracy.
+
+## Model Architecture
+
+- **Base Architecture**: ResNet18
+- **Modifications**:
+  - Final fully connected layer replaced with a custom layer for 4-class classification
+  - Dropout layer (p=0.5) added before final classification layer for regularization
+- **Number of Parameters**: ~11.7 million
+- **Output Classes**: 4 (Normal, Pneumonia, Tuberculosis, Unknown)
+- **Framework**: PyTorch
+
+## Data Processing
+
+### Preprocessing Pipeline
+1. **Image Conversion**: RGB to grayscale
+2. **Window-Level Adjustment**: Contrast enhancement using window level (WL: 600, WW: 1500)
+3. **CLAHE** (Contrast Limited Adaptive Histogram Equalization): Applied with clip limit of 2.0
+4. **Resizing**: All images standardized to 512×512 pixels
+5. **Normalization**: Mean (0.232080) and standard deviation (0.070931) normalization
+
+### Dataset Split
+- **Training**: 80% of data
+- **Validation**: 10% of data
+- **Testing**: 10% of data
+
+### Data Augmentation
+- Random horizontal flips
+- Random rotations (±15°)
+- Random brightness and contrast adjustments
+
+## Performance Metrics
+
+- **Overall Accuracy**: [TO BE FILLED]
+- **Class-wise Precision**:
+  - Normal: [TO BE FILLED]
+  - Pneumonia: [TO BE FILLED]
+  - Tuberculosis: [TO BE FILLED]
+- **Class-wise Recall**:
+  - Normal: [TO BE FILLED]
+  - Pneumonia: [TO BE FILLED]
+  - Tuberculosis: [TO BE FILLED]
+- **F1 Score**: [TO BE FILLED]
+
+## Technologies Used
+
+### Frontend
+- **Framework**: React.js
+- **Styling**: Styled Components
+
+### Backend
+- **Server**: Flask (Python)
+- **ML Framework**: PyTorch
+- **Image Processing**: OpenCV
+- **Cross-Origin Handling**: Flask-CORS
 
 ## Docker Setup
 
-This project has been dockerized for easy deployment and portability.
-
 ### Prerequisites
-
 - Docker
 - Docker Compose
 
 ### Running with Docker
 
-1. Make sure Docker and Docker Compose are installed on your system.
-
-2. Clone this repository:
-
-   ```
+1. Clone this repository:
+   ```bash
    git clone <repository-url>
    cd xray_diagnosis_ML
    ```
 
-3. Start the application:
-
-   ```
+2. Build and start the application:
+   ```bash
+   docker-compose build
    docker-compose up
    ```
 
-   This will build and start both the frontend and backend services.
-
-4. Access the application:
-
+3. Access the application:
    - Frontend: http://localhost:3000
    - Backend API: http://localhost:5000
 
-5. To stop the application:
-   ```
+4. To stop the application:
+   ```bash
    docker-compose down
    ```
 
-### Troubleshooting Docker Issues
+## Manual Installation
 
-If `docker-compose up` gets stuck or shows no progress:
+### Backend Setup
 
-1. Try running with verbose output:
-
-   ```
-   docker-compose up --verbose
-   ```
-
-2. Build the images separately:
-
-   ```
-   docker-compose build --no-cache
+1. Navigate to the backend directory:
+   ```bash
+   cd backend
    ```
 
-3. Test just the backend service:
-
-   ```
-   docker-compose -f docker-compose.debug.yml up
-   ```
-
-4. Check Docker logs for errors:
-
-   ```
-   docker-compose logs
+2. Create and activate a virtual environment:
+   ```bash
+   python -m venv venv
+   # On Windows
+   venv\Scripts\activate
+   # On Linux/Mac
+   source venv/bin/activate
    ```
 
-5. Make sure the model file path is correct:
-
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
    ```
-   ls -la src/best_model.pth
+
+4. Run the server:
+   ```bash
+   python server.py
    ```
 
-6. If you're on Windows, make sure file paths are using the correct format.
+### Frontend Setup
 
-### Important Notes
+1. Navigate to the frontend directory:
+   ```bash
+   cd frontend
+   ```
 
-- The ML model file (`best_model.pth`) must be present in the `src/` directory.
-- The API endpoint is configured to use the service name `backend:5000` for container networking.
-- No dataset is included in the Docker images.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-## Project Structure
+3. Start the development server:
+   ```bash
+   npm start
+   ```
 
-- `frontend/`: React.js web application
-- `backend/`: Flask API server
-- `src/`: Contains ML model and related code
+## Usage
 
-## Development
+1. Open the web application at http://localhost:3000 (after running the container)
+2. Upload a chest X-ray image using the interface
+3. The system will process the image and display the diagnosis result
+4. View detailed confidence scores for each category
+5. Access additional features like AI second opinion and diagnostic summary
 
-For development without Docker, refer to the setup instructions in each component's directory.
+## Key Features
+
+### Primary Diagnosis
+- Fast and accurate classification of X-ray images
+- Confidence scores for each potential diagnosis
+- Visual heatmap highlighting regions of interest
+
+### External AI Second Opinion
+- Integration with Google's Gemini AI for a second diagnostic opinion
+- Compare results between the primary model and Gemini's analysis
+- Enhanced diagnostic confidence through multi-model validation
+
+### Diagnostic Summary Generation
+- Automatic generation of comprehensive diagnostic summaries
+- Inclusion of key findings and potential considerations
+- Exportable format for integration with electronic health records
+- Customizable templates for different clinical contexts
+
+## Datasets
+
+The model was trained on a combination of the following publicly available datasets:
+
+1. **Tuberculosis + Normal**:
+   - [Tuberculosis TB Chest X-ray Dataset](https://www.kaggle.com/datasets/tawsifurrahman/tuberculosis-tb-chest-xray-dataset)
+   - [Lungs Disease Dataset (4 Types)](https://www.kaggle.com/datasets/omkarmanohardalvi/lungs-disease-dataset-4-types/data)
+
+2. **Pneumonia + Normal**:
+   - [Chest X-ray Pneumonia](https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia)
