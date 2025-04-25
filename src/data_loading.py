@@ -43,8 +43,8 @@ DATA_PROCESSED_DIR = BASE_DIR / "data_processed"
 MODEL_SAVE_PATH = BASE_DIR / "best_model.pth"
 
 # --- Updated Mean/Std ---
-CUSTOM_MEAN_LOAD = 0.232080
-CUSTOM_STD_LOAD = 0.070931
+CUSTOM_MEAN_LOAD = 0.233119  # <<< Placeholder - Replace with actual value
+CUSTOM_STD_LOAD = 0.072080   # <<< Placeholder - Replace with actual value
 # --- End Updated Values ---
 
 if not (0 < CUSTOM_MEAN_LOAD < 1 and 0 < CUSTOM_STD_LOAD < 0.5):
@@ -239,16 +239,27 @@ def main():
     # Augmentations
     train_transform = None
     if ALBUMENTATIONS_AVAILABLE:
-        train_transform = A.Compose([
+        transform = A.Compose([
             A.HorizontalFlip(p=0.5),
-            A.ShiftScaleRotate(shift_limit=0.06, scale_limit=0.1, rotate_limit=15, p=0.7,
-                               border_mode=cv2.BORDER_CONSTANT, value=0),
+            A.Affine(
+                scale=(0.9, 1.1),
+                translate_percent=(0.06, 0.06),
+                rotate=(-8, 8),
+                cval=0,
+                mode=cv2.BORDER_CONSTANT,
+                p=0.7
+            ),
             A.RandomBrightnessContrast(brightness_limit=0.15, contrast_limit=0.15, p=0.5),
             A.GaussNoise(var_limit=(10.0, 60.0), p=0.3),
-            A.CoarseDropout(max_holes=10, max_height=int(IMAGE_SIZE_EXPECTED[0] * 0.1),
-                            max_width=int(IMAGE_SIZE_EXPECTED[1] * 0.1),
-                            min_holes=2, min_height=16, min_width=16, fill_value=CUSTOM_MEAN_LOAD, p=0.3),
-        ]);
+            A.CoarseDropout(max_holes=8,
+                            max_height=32,
+                            max_width=32,
+                            min_height=16,
+                            min_width=16,
+                            fill_value=0,
+                            p=0.1)
+        ])
+
         print("Albumentations defined for training.")
     val_test_transform = None
 

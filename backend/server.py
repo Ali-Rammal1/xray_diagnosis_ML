@@ -20,8 +20,9 @@ DROPOUT_RATE = 0.5  # Match dropout used in data_loading.py
 
 # !!! IMPORTANT: REPLACE THESE WITH VALUES FROM normalize_all.py (512x512) RUN !!!
 # These are the stats calculated by normalize_all.py for the 512x512 custom processing
-CUSTOM_MEAN = 0.232080  # <<< Placeholder - Replace with actual value
-CUSTOM_STD = 0.070931  # <<< Placeholder - Replace with actual value
+
+CUSTOM_MEAN = 0.233119  # <<< Placeholder - Replace with actual value
+CUSTOM_STD = 0.072080  # <<< Placeholder - Replace with actual value
 # !!! END IMPORTANT !!!
 
 # --- Replicate preprocessing settings from normalize_all.py ---
@@ -59,7 +60,7 @@ def window_level(img: np.ndarray, wl: float, ww: float) -> np.ndarray:
 
 def preprocess_image_for_inference(img_bytes: bytes) -> torch.Tensor:
     """Preprocesses raw image bytes using the same pipeline as training data."""
-    try:#Debug #1
+    try:  # Debug #1
         # 1. Decode image bytes using OpenCV
         nparr = np.frombuffer(img_bytes, np.uint8)
         img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)  # Read as color
@@ -212,7 +213,7 @@ def predict():
             "success": True,
             "prediction": prediction,
             "confidences": confidences,  # Map of all confidences
-            "confidence": pred_probability, # <<< CORRECT KEY (probability 0-1) for frontend logic
+            "confidence": pred_probability,  # <<< CORRECT KEY (probability 0-1) for frontend logic
             "source": "Our AI Engine",
             # Description can still include percentage for internal/logging use if needed
             "description": f"Classified as {prediction} ({pred_confidence_percent:.1f}% confidence)."
