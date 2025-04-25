@@ -3,11 +3,13 @@
 A comprehensive web application for diagnosing chest X-ray images using deep learning. This system can classify X-ray images into Normal, Pneumonia, or Tuberculosis categories.
 
 ## Table of Contents
+
 - [Project Overview](#project-overview)
 - [Model Architecture](#model-architecture)
 - [Data Processing](#data-processing)
 - [Performance Metrics](#performance-metrics)
 - [Technologies Used](#technologies-used)
+- [Code Structure](#code-structure)
 - [Docker Setup](#docker-setup)
 - [Manual Installation](#manual-installation)
 - [Usage](#usage)
@@ -31,6 +33,7 @@ This application provides an intuitive web interface for medical professionals t
 ## Data Processing
 
 ### Preprocessing Pipeline
+
 1. **Image Conversion**: RGB to grayscale
 2. **Window-Level Adjustment**: Contrast enhancement using window level (WL: 600, WW: 1500)
 3. **CLAHE** (Contrast Limited Adaptive Histogram Equalization): Applied with clip limit of 2.0
@@ -38,11 +41,13 @@ This application provides an intuitive web interface for medical professionals t
 5. **Normalization**: Mean (0.232080) and standard deviation (0.070931) normalization
 
 ### Dataset Split
+
 - **Training**: 80% of data
 - **Validation**: 10% of data
 - **Testing**: 10% of data
 
 ### Data Augmentation
+
 - Random horizontal flips
 - Random rotations (±15°)
 - Random brightness and contrast adjustments
@@ -63,36 +68,82 @@ This application provides an intuitive web interface for medical professionals t
 ## Technologies Used
 
 ### Frontend
+
 - **Framework**: React.js
 - **Styling**: Styled Components
+- **Animations**: Framer Motion
+- **Routing**: React Router
 
 ### Backend
+
 - **Server**: Flask (Python)
 - **ML Framework**: PyTorch
 - **Image Processing**: OpenCV
 - **Cross-Origin Handling**: Flask-CORS
 
+## Code Structure
+
+The repository is organized into three main directories:
+
+### Backend
+
+Contains the Flask server implementation for handling API requests and ML model inference.
+
+- **`server.py`**: Main server file that loads the ML model and provides endpoints for X-ray image analysis
+- **`requirements.txt`**: Python dependencies for the backend
+
+### Frontend
+
+Contains all React components and assets for the user interface.
+
+- **`src/`**: React source code
+  - **`components/`**: UI components like image upload, results display, etc.
+  - **`services/`**: API service connectors
+  - **`styles/`**: Styled components and CSS
+  - **`App.js`**: Main application component
+  - **`index.js`**: Application entry point
+
+### src (Model & Data Processing)
+
+Contains the trained model and scripts used for data processing and model evaluation.
+
+- **`best_model.pth`**: The trained PyTorch model file used for inference
+- **`normalize_all.py`**: Script to apply normalization on dataset images and convert to .npy format
+- **`data_loading.py`**: Code used for loading and preprocessing data during model training
+- **`evaluate_model.py`**: Script for testing the accuracy and performance of the model
+- **`model_score.txt`**: File containing metrics and performance scores of the trained model
+- **Utility Scripts**:
+  - Scripts for checking duplicates in the dataset
+  - Tools for inspecting and visualizing data
+  - GPU utilization verification scripts
+
+> **Note**: The actual dataset files are not included in the repository due to their large size. This means that scripts that directly access the dataset (like `normalize_all.py` and `data_loading.py`) will not work without the dataset files. To use the application, we recommend running the Docker container which has everything needed for the main functionality.
+
 ## Docker Setup
 
 ### Prerequisites
+
 - Docker
 - Docker Compose
 
 ### Running with Docker
 
 1. Clone this repository:
+
    ```bash
    git clone <repository-url>
    cd xray_diagnosis_ML
    ```
 
 2. Build and start the application:
+
    ```bash
    docker-compose build
    docker-compose up
    ```
 
 3. Access the application:
+
    - Frontend: http://localhost:3000
    - Backend API: http://localhost:5000
 
@@ -106,11 +157,13 @@ This application provides an intuitive web interface for medical professionals t
 ### Backend Setup
 
 1. Navigate to the backend directory:
+
    ```bash
    cd backend
    ```
 
 2. Create and activate a virtual environment:
+
    ```bash
    python -m venv venv
    # On Windows
@@ -120,6 +173,7 @@ This application provides an intuitive web interface for medical professionals t
    ```
 
 3. Install dependencies:
+
    ```bash
    pip install -r requirements.txt
    ```
@@ -132,11 +186,13 @@ This application provides an intuitive web interface for medical professionals t
 ### Frontend Setup
 
 1. Navigate to the frontend directory:
+
    ```bash
    cd frontend
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    ```
@@ -148,7 +204,7 @@ This application provides an intuitive web interface for medical professionals t
 
 ## Usage
 
-1. Open the web application at http://localhost:3000 (after running the container)
+1. Open the web application at http://localhost:3000
 2. Upload a chest X-ray image using the interface
 3. The system will process the image and display the diagnosis result
 4. View detailed confidence scores for each category
@@ -157,16 +213,19 @@ This application provides an intuitive web interface for medical professionals t
 ## Key Features
 
 ### Primary Diagnosis
+
 - Fast and accurate classification of X-ray images
 - Confidence scores for each potential diagnosis
 - Visual heatmap highlighting regions of interest
 
 ### External AI Second Opinion
+
 - Integration with Google's Gemini AI for a second diagnostic opinion
 - Compare results between the primary model and Gemini's analysis
 - Enhanced diagnostic confidence through multi-model validation
 
 ### Diagnostic Summary Generation
+
 - Automatic generation of comprehensive diagnostic summaries
 - Inclusion of key findings and potential considerations
 - Exportable format for integration with electronic health records
@@ -177,6 +236,7 @@ This application provides an intuitive web interface for medical professionals t
 The model was trained on a combination of the following publicly available datasets:
 
 1. **Tuberculosis + Normal**:
+
    - [Tuberculosis TB Chest X-ray Dataset](https://www.kaggle.com/datasets/tawsifurrahman/tuberculosis-tb-chest-xray-dataset)
    - [Lungs Disease Dataset (4 Types)](https://www.kaggle.com/datasets/omkarmanohardalvi/lungs-disease-dataset-4-types/data)
 
