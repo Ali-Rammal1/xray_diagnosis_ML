@@ -54,16 +54,18 @@ This application provides an intuitive web interface for medical professionals t
 
 ## Performance Metrics
 
-- **Overall Accuracy**: [TO BE FILLED]
+- **Overall Accuracy**: 99.65%
 - **Class-wise Precision**:
-  - Normal: [TO BE FILLED]
-  - Pneumonia: [TO BE FILLED]
-  - Tuberculosis: [TO BE FILLED]
+  - Normal: 0.9884
+  - Pneumonia: 0.9892
+  - Tuberculosis: 0.9981
+  - Unknown: 0.9992
 - **Class-wise Recall**:
-  - Normal: [TO BE FILLED]
-  - Pneumonia: [TO BE FILLED]
-  - Tuberculosis: [TO BE FILLED]
-- **F1 Score**: [TO BE FILLED]
+  - Normal: 0.9954
+  - Pneumonia: 0.9883
+  - Tuberculosis: 0.9978
+  - Unknown: 0.9995
+- **Weighted F1 Score**: 0.9965
 
 ## Technologies Used
 
@@ -108,7 +110,6 @@ Contains the trained model and scripts used for data processing and model evalua
 - **`best_model.pth`**: The trained PyTorch model file used for inference
 - **`normalize_all.py`**: Script to apply normalization on dataset images and convert to .npy format
 - **`data_loading.py`**: Code used for loading and preprocessing data during model training
-- **`evaluate_model.py`**: Script for testing the accuracy and performance of the model
 - **`model_score.txt`**: File containing metrics and performance scores of the trained model
 - **Utility Scripts**:
   - Scripts for checking duplicates in the dataset
