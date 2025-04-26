@@ -68,7 +68,7 @@ This application provides an intuitive web interface for medical professionals t
   - Unknown: 0.9995
 - **Weighted F1 Score**: 0.9965
 
-**Note**: These performance metrics apply only when the input images are of high quality, in the proper format, and from reliable sources. Performance may vary significantly with low-quality, improperly formatted, or unreliable images.
+**Note**: These performance metrics apply only when the input images are of high quality and in the proper format. Performance may vary significantly with low-quality, improperly formatted, or unreliable images.
 
 ## Technologies Used
 
